@@ -1,0 +1,105 @@
+@import './base.css';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+*{
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0.95, 0.05, 0.095, 0.935);
+}
+body{
+  margin: 0px;
+  padding: 0px;
+}
+/* reuseable styles*/
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.just-space-around{
+  justify-content: space-around;
+}
+.just-space-between{
+  justify-content: space-between;
+}
+.just-space-evenly{
+  justify-content: space-evenly;
+}
+.just-center{
+  justify-content: center;
+}
+.align-space-around{
+  align-items: space-around;
+}
+.align-space-between{
+  align-items: space-between;
+}
+.align-space-evenly{
+  align-items: space-evenly;
+}
+.align-center{
+  align-items: center;
+}
+
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.3s;
+}
+a.router-link-exact-active {
+  color: white;
+  font-size: larger;
+}
+.container-fluid{
+  width: 96%;
+  height: auto;
+  background-color: aliceblue;
+  padding: 2% 2%;
+  margin: 0%;
+}
+div.nav{
+  width: 94%;
+  height: 7%;
+  padding: 0px 3%;
+  background-color: darkred;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+}
+
+.box { background-image: 
+  repeating-linear-gradient(0deg, #783f3f, #783f3f 10px, transparent 10px, transparent 20px, #783f3f 20px); 
+background-size: 1px 100%, 100% 1px, 1px 100% , 100% 1px; 
+background-position: 0 0, 0 0, 100% 0, 0 100%; 
+background-repeat: no-repeat;
+}
+@keyframes rotate {
+  0%{transform: rotateZ(0deg);}
+  10%{transform: rotateZ(90deg); }
+  18%{transform: rotateZ(0deg);}
+  40%{transform: rotateZ(190deg);}
+  50%{transform: rotateZ(20deg);}
+  100%{transform: rotateZ(720deg);}
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: rgb(179, 233, 215);
+  }
+}
+
+@media (min-width: 1024px) {
+
+}
+
