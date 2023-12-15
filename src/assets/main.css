@@ -1,6 +1,4 @@
 @import './base.css';
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-
 *{
   transition-duration: 100ms;
   transition-timing-function: cubic-bezier(0.95, 0.05, 0.095, 0.935);
@@ -76,6 +74,25 @@ div.nav{
   align-items: center;
   font-size: 12px;
   text-align: center;
+  z-index: 1000;
+  position: relative;
+}
+.word-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.capitalize{
+  text-transform: capitalize;
+}
+.upper{
+  text-transform: uppercase;
+}
+.lower{
+  text-transform: lowercase;
+}
+.pointer{
+  cursor: pointer;
 }
 
 .box { background-image: 

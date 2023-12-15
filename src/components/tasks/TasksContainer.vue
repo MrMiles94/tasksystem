@@ -1,14 +1,14 @@
 <template>
     <div id="Taskcontainer" class="tasks" >
         <SingleTask 
-        v-for="(task, i ) in !inTask ? tasks.slice(0, 3) : tasks " 
+        v-for="(task, i ) in !inTask ? sortedTask.slice(0, 3) : sortedTask " 
         :task="task" 
         :key="i"
         />
         <button type="button" 
-        v-if="(!inTask && (tasks.length>2))" 
+        v-if="(!inTask && (sortedTask.length>2))" 
         @click="this.$router.push('/tasks')"
-        >See More {{(tasks.length>2 )}}</button>
+        >See More</button>
     </div>
     
 </template>
@@ -18,17 +18,28 @@ import SingleTask from './SigleTask.vue'
 export default{
     data(){
         return{
-            tasks: []
+            tasks: [],
+            sortedTask:[]
         }
     },
     components:{
         SingleTask
     },
     props:{
-        inTask:Boolean
+        inTask:Boolean,
+        sort:String
+    },
+    methods:{
+        sortTask(sot){
+           return (sot =='') ? this.sortedTask =this.tasks : this.sortedTask =this.tasks.filter((task)=>(task.priority==sot))
+        }
     },
     created(){
-        this.tasks = this.$store.state.user.tasks            
+        this.tasks = this.$store.state.user.tasks   ;  
+        this.sortTask('')   
+    },
+    updated(){
+       this.sortTask(this.sort)
     }
 }
 </script>

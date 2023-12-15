@@ -27,11 +27,10 @@ Class User {
   public $id;
   public $speed;
 }
-$user = new User();
+$user = new User('aniefiok@gmail.com');
 $user->name = 'Akon Akpan';
 $user->password = "Loopingthings";
 $user->id = new DateTime();
-$user->speed = 200;
 $data[]=$user;
 $data = json_encode($data);
 echo $data

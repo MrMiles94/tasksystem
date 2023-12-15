@@ -7,7 +7,7 @@ import TasksContainer from '../components/tasks/TasksContainer.vue';
 <template>
   <AppPage>
       <TaskForm/>
-      <h3>Unhandled Incidents</h3> 
+      <h3>Most Recent Incidents</h3> 
       <TasksContainer :inTask="false"/>
   </AppPage>
 </template>
@@ -20,6 +20,10 @@ font-size: large;
 text-transform: uppercase;
 padding:1%;
 background-color: grey;
+}
+select{
+  margin-left: auto;
+  margin-right: 0%;
 }
 </style>
 

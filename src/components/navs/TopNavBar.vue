@@ -1,7 +1,7 @@
 <template>
     <div class="nav task-bar" id="top">
         <button @click="this.$router.go(-1)"  class="back-btn">
-          <i class="fa">&#xf104;</i>
+          <font-awesome-icon :icon="['fas', 'chevron-left']" />
         </button>
         <div class="logo">
           Aniefiok Asuquo | aniefiokasuquo@gmail.com

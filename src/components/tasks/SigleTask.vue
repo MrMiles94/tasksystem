@@ -3,9 +3,9 @@
         <span class="heads">
             <span class="title"><b>{{props.task.title}}</b></span>
             <TaggedMembers :tags="props.task.tags" />
-            <em class="delete-task fa-solid fa-x"></em>
+            <em @click="console.log(props.task.id)"><font-awesome-icon :icon="['fas', 'xmark']" /></em>
         </span>
-        <p>
+        <p class="word-ellipsis">
             {{props.task.description}}
         </p>
         <div class="subs">
@@ -27,9 +27,6 @@
 }
 p{
     margin-top: auto;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 .task{
     height: auto;

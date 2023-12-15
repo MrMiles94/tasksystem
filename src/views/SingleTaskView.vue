@@ -7,7 +7,7 @@
                     <div class="task-header">
                         <span>
                             <b>{{task.title}} sdkojwd wwemfwef  </b> 
-                            <a><i class="fa">&#xf3c5;</i> {{ task.location }} </a>
+                            <a class="capitalize"><em><font-awesome-icon :icon="['fas', 'location-dot']" /></em> {{ task.location }} </a>
                         </span>
                         <TaggedMembers :tags="task.tags"></TaggedMembers>
                     </div>
@@ -16,76 +16,93 @@
                         <div class="pictures">
                 
                         </div>
-                        <div class="action-ribbon flex-row just-space-around">
-                            <a title="Home" ><b class="fa">&#xf075;</b> {{task.comments.length}}</a>
-                            <a class="active" title="Home" ><b class="fa">&#xf164;</b> {{task.likes.length}}</a>
-                            <a title="Home" ><b class="fa">&#xf165;</b> {{task.dislikes.length}}</a>
-                            <a title="Home" ><b class="fa rotate">&#xf110;</b> {{task.status}}</a>
-                            
-                        </div>
+                        <ActionRibbon :action="task" @change-priority="changePriority(item)"/>
                     </div>
                     
                 </div>
-                <div class="comments replied">
-                    <div class="writer">
-                        <img src="#" alt="">
-                        <span class="username"> {{task.comments[0].composer}}</span>
-                    </div>
-                    <div class="comment-body">
-                        <p>{{task.comments[0].msg}}</p>
-                    </div>
-                    <div class="comment">
-                        <a title="Home" ><b class="fa">&#xf075;</b> {{task.comments[0].replies.length}}</a>
-                        <a class="active" title="Home" ><b class="fa">&#xf164;</b> {{task.comments[0].likes.length}}</a>
-                        <a title="Home" ><b class="fa">&#xf165;</b> {{task.comments[0].dislikes.length}}</a>
-                        
-                    </div>
-
-                    <div class="comments">
-                        <div class="writer">
-                            <img src="#" alt="">
-                            <span class="username"> {{task.comments[0].composer}}</span>
-                        </div>
-                        <div class="comment-body">
-                            <p>{{task.comments[0].msg}}</p>
-                        </div>
-                        <div class="comment">
-                            <a title="Home" ><b class="fa">&#xf075;</b> {{task.comments[0].replies.length}}</a>
-                            <a class="active" title="Home" ><b class="fa">&#xf164;</b> {{task.comments[0].likes.length}}</a>
-                            <a title="Home" ><b class="fa">&#xf165;</b> {{task.comments[0].dislikes.length}}</a>
-                            
-                        </div>
-                    </div>
-                </div>
-            
+                
+            <TaskComment 
+            v-for="(comment) in task.comments" 
+            :key="comment.id"  
+            :comments="comment"
+            >
+            </TaskComment>
         </div>
     </AppPage>
 </template>
 <script>
     import AppPage from '../components/AppPage.vue';
-    import TaggedMembers from '../components/tasks/TagedMembers.vue'
+    import TaggedMembers from '../components/tasks/TagedMembers.vue';
+    import TaskComment from '../components/tasks/singleTask/TaskComment.vue';
+    import ActionRibbon from '../components/tasks/ActionRibbon.vue';
     export default{
         data(){
             return{
                 link:this.$route.params.id-1,
-                task:{}
+                task:{},
+                me:this.me
             }
         },
         methods:{
            fetchTask(){
                this.task =  this.$store.state.user.tasks[this.link]
+            },
+            changePriority(item){
+            this.task.priority =item
+            console.log(this.task.priority)
+             },
+            validation(users){
+            let  myUserName='myUserName'  //this part will always fetch the users user name
+            let result = false
+            users.forEach(user => {
+                    if(user==myUserName){
+                        result =true
+                    }
+                    else{
+                      result = false
+                    }
+                });
+                return result
+        
+            },
+            validate(users){
+                return users.filter((user)=>(this.me == user))
+            },
+            like(element){
+                if(element.likes.filter((user)=>this.me == user).length==1){
+                    element.likes=element.likes.filter((user)=>this.me != user)
+                }else{
+                    element.likes = [...element.likes, this.me];
+                    element.dislikes=element.dislikes.filter((user)=>this.me != user)
+                }
+            },
+            dislike(element){
+                if(element.dislikes.filter((user)=>this.me == user).length==1){
+                    element.dislikes=element.dislikes.filter((user)=>this.me != user)
+                }else{
+                    element.dislikes = [...element.dislikes, this.me];
+                    element.likes=element.likes.filter((user)=>this.me != user)
+                }              
             }
+            
         },
         created(){
-            this.fetchTask()
+            this.fetchTask();
+            this.me = this.$store.state.user.data.userName;
+            console.log(this.validate(['12','myUserName', 'me', 'miles94']) )
         },
         components:{
             AppPage,
-            TaggedMembers
+            TaggedMembers,
+            TaskComment,
+            ActionRibbon
         }
     }
 </script>
 <style scoped>
+em{
+    color: darkred;
+}
 p{
     padding: 0% 2%;
 }
@@ -138,51 +155,14 @@ p{
 
 
     }
-    .comment>a{
-        margin-top: auto;
-        color: grey;
-        margin-right: 15%;
-    }
-    .comment>a.active>b{
-        color:hsla(160, 100%, 37%, 1) ;
-    }
     .action-ribbon>a{
         margin: auto 0%;
         color: gray;
+        text-transform: capitalize;
+        cursor: pointer;
     }
     .action-ribbon>a.active>b{
         color: hsla(160, 100%, 37%, 1);
-    }
-    .writer{
-        margin-top: 2%;
-    }
-    .writer>img{
-        width: 30px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-    }
-    .writer>span{
-        margin-left: 2%;
-        font-weight: bold;
-    }
-    .comment-body{
-        width: 100%;
-    }
-    .comments{
-        width: 90%;
-        margin-left: 20px;
-        margin-top: 2%;
-    }
-    .replied{
-        border-left: 1px solid rgba(139, 0, 0, 0.073);
-    }
-    .replied>.writer{
-        margin-top: 0% ;
-        margin-left: -15px ;
-    }
-    .replied>.comments{
-        margin-top: 0% !important;
-        margin-left: 0px !important;
     }
     .rotate{
         animation: rotate 3s infinite linear;

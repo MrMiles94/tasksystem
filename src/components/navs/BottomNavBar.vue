@@ -1,9 +1,9 @@
 <template >
     <div class="nav " id="bottom">
-        <router-link title="Home" to="/"><b class="fa">&#xf015;</b></router-link>
-        <router-link title="Tasks" to="/Tasks"><b class="fa">&#xf0ae;</b></router-link>
-        <router-link title="Notifications" to="/notifications"><b class="fa">&#xf0f3;</b></router-link>
-        <router-link title="Archive" to="/Archive"><b class="fa">&#xf187;</b></router-link>
+        <router-link title="Home" to="/"><font-awesome-icon :icon="['fas', 'home']" /></router-link>
+        <router-link title="Tasks" to="/Tasks"><font-awesome-icon :icon="['fas', 'list-check']" /></router-link>
+        <router-link title="Notifications" to="/notifications"><font-awesome-icon :icon="['fas', 'bell']" /></router-link>
+        <router-link title="Archive" to="/Archive"><font-awesome-icon :icon="['fas', 'box-archive']" /></router-link>
     </div>
 </template>
 <style scoped>

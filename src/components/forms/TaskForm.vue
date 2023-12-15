@@ -12,8 +12,8 @@
             <Tags />
             <textarea name="content" id="Task-content" placeholder="Centents here"></textarea>
             <div class="action-btns">
-                <button @click="toggleTaskForm" type="button" class="cancle"><b class="fa-solid">&#xf00d;</b></button>
-                <button class="done"><i class="fa-solid">&#xf00c;</i></button>
+                <button @click="toggleTaskForm" type="button" class="cancle"><font-awesome-icon :icon="['fas', 'xmark']" /></button>
+                <button class="done"><font-awesome-icon :icon="['fas', 'check']" /></button>
             </div>
         </form>
     </div>

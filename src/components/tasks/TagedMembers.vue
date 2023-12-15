@@ -1,5 +1,5 @@
 <template>
-    <div class="tags" id="TaggedMembers">
+    <div class="tags word-ellipsis" id="TaggedMembers">
         Tags: <i v-for="(tag, i) in props.tags" :key="i">{{tag}}</i>
     </div>
 </template>
@@ -32,10 +32,6 @@ i:first-child::before{
     font-weight: bold;
     margin-left: 2%;
     font-size: smaller; 
-    display: flex;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
+
 </style>
